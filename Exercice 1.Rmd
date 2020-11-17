@@ -1,0 +1,60 @@
+---
+title: 'Section 3 : Théorie de l''estimation , Exercice 1'
+author: "ESB"
+date: "17/11/2020"
+output:
+html_document: default
+word_document: default
+pdf_document: default
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercice 1
+
+### Les énoncés 
+Un manufacturier de peinture veut estimer le temps moyen de séchage d'une nouvelle peinture 
+d'intérieur qu'il désire mettre sur le marché. 
+Le temps de séchage de cette peinture est une variable  aléatoire X qui se distribue selon une loi normale. Supposons de plus qu'il connaisse l'écart type $\sigma$ de ce  temps de séchage (prenons $\sigma=10$mn). Pour estimer $\mu$, le manufacturier peint $25$ surfaces de même  taille et pour ces $25$ surfaces, il obtient un temps de séchage moyen de $65$mn. 
+Construire un intervalle  de confiance au niveau $95\%$ pour la moyenne du temps de séchage de cette peinture.
+
+### Question 1
+Déterminer les paramètres suivants : 
+
+- sigma : L'écart-type de la variable aléatoire "Le temps de séchage"
+- n : La taille de l'échantillon.
+- c : Le taux de confiance fixé.
+- alpha : le risque fixé (1-c)
+- moy_estimée : L'estimation du temps de séchage en min. 
+```{r question1, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+sigma = 10
+sigma
+n = 25
+n
+c = 0.95
+c
+alpha = 1-c
+alpha
+moy_estimée = 65
+moy_estimée
+```
+
+## Question 2 : 
+Calculer $a$ telque $\mathbb{P}(Z >a ) = \frac{\alpha}{2}$ où Z représente la loi normale centrée et réduite. 
+
+```{r question2, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+a = qnorm(alpha/2, lower.tail = FALSE)
+a
+```
+
+## Question 3
+Calculer les deux bornes de l'intervalle de confiance borne_inf et borne_sup ?
+```{r question3, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+borne_inf = moy_estimée - a*sigma/sqrt(n)
+borne_inf
+borne_sup = moy_estimée + a*sigma/sqrt(n)
+borne_sup
+```
+
