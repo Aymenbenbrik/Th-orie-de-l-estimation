@@ -1,0 +1,57 @@
+---
+title: 'Section 3 : Théorie de l''estimation , Exercice 2'
+author: "ESB"
+date: "17/11/2020"
+output:
+html_document: default
+word_document: default
+pdf_document: default
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercice 1
+
+### Les énoncés 
+Reprenons l'exercice précédent concernant le temps moyen de séchage d'une nouvelle peinture  d'intérieur, mais en faisant maintenant l'hypothèse plus réaliste que le manufacturier, en plus d'ignorer la  moyenne $\mu$, ignore aussi $\sigma^2$. Supposons de nouveau que, pour estimer $\mu$, le manufacturier tire un  échantillon de taille $25$ et obtient un temps de séchage moyen de $65$mn avec un écart type de $15$mn.  On veut construire un intervalle de confiance au niveau $95\%$ pour la moyenne $\mu$ du temps de séchage de cette  peinture.
+
+### Question 1
+Déterminer les paramètres suivants : 
+
+- s : L'écart-type de l'échantillon issu de la variable aléatoire "Le temps de séchage"
+- n : La taille de l'échantillon.
+- c : Le taux de confiance fixé.
+- alpha : le risque fixé (1-c)
+- moy_estimée : L'estimation du temps de séchage en min. 
+```{r question1, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+s = 15
+s
+n = 25
+n
+c = 0.95
+c
+alpha = 1-c
+alpha
+moy_estimée = 65
+moy_estimée
+```
+
+## Question 2 : 
+Calculer $a$ telque $\mathbb{P}(T >a ) = \frac{\alpha}{2}$ où $T$ représente la loi de Student $24$ degré de liberté. 
+
+```{r question2, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+a = qt(alpha/2,df = 24, lower.tail = FALSE)
+a
+```
+
+## Question 3
+Calculer les deux bornes de l'intervalle de confiance borne_inf et borne_sup ?
+```{r question3, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+borne_inf = moy_estimée - a*s/sqrt(n)
+borne_inf
+borne_sup = moy_estimée + a*s/sqrt(n)
+borne_sup
+```
+
