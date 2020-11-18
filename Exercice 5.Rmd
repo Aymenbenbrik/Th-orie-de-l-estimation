@@ -1,0 +1,119 @@
+---
+title: 'Section 3 : Théorie de l''estimation , Exercice 5'
+author: "ESB"
+date: "17/11/2020"
+output:
+html_document: default
+word_document: default
+pdf_document: default
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercice 5
+
+### Les énoncés 
+Le service du personnel d’une entreprise choisit au hasard $25$ employés et trouve que le salaire moyen  est de $1500$ Dinars par mois. On suppose que les salaires suivent une distribution normale. On sait par  ailleurs que l’écart-type de cette distribution est de $100$ Dinars. 
+ 
+
+### Question 1
+Estimer le salaire moyen des employés de l’entreprise à l’aide d’un intervalle de confiance à $90\%$.
+__Les instructions__
+Déterminer les variables suivantes : 
+
+- n : La taille de l'échantillon.
+- moy_estimée : Le saliare moyen dans l'échantillon.
+- sigma : L'écart-type des salaires
+- c : La confiance fixée 
+- alpha : le risque fixé (1-c)
+- $a$ telque $\mathbb{P}(Z> a) = \alpha/2$ 
+- borne_inf : La borne inférieure de l'intervalle de confiance.
+- borne_sup : La borne supérieure de l'intervalle de confiance.
+
+```{r question1, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+n = 25
+n
+moy_estimée = 1500
+moy_estimée
+sigma = 100
+sigma
+c = 0.90
+c
+alpha = 1-c
+alpha
+a = qnorm(alpha/2, lower.tail = FALSE)
+a
+borne_inf = moy_estimée - a*sigma/sqrt(n)
+borne_inf
+borne_sup = moy_estimée + a*sigma/sqrt(n)
+borne_sup
+```
+
+## Question 2 : 
+Supposer qu’on ignore l’écart type de la distribution alors qu’on sait que l’écart-type de  l’échantillon de $25$ personnes est de $100$ Dinars. Estimer le salaire moyen des employés de  l’entreprise à l’aide d’un intervalle de confiance à $90\%$. 
+
+__Les instructions__
+Déterminer les variables suivantes : 
+
+- n : La taille de l'échantillon.
+- moy_estimée : Le saliare moyen dans l'échantillon.
+- s : L'écart-type des salaires dans l'échantillon. 
+- c : La confiance fixée 
+- alpha : le risque fixé (1-c)
+- a telque $\mathbb{P}(T> a) = \alpha/2$ où $T$ suit la loi de Student à $n-1$ degré de liberté.  
+- borne_inf : La borne inférieure de l'intervalle de confiance.
+- borne_sup : La borne supérieure de l'intervalle de confiance.
+
+```{r question2, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+n = 25
+n
+moy_estimée = 1500
+moy_estimée
+s = 100
+s
+c = 0.90
+c
+alpha = 1-c
+alpha
+a = qt(alpha/2, df = 24, lower.tail = FALSE)
+a
+borne_inf = moy_estimée - a*s/sqrt(n)
+borne_inf
+borne_sup = moy_estimée + a*s/sqrt(n)
+borne_sup
+```
+
+## Question 3
+On se replace dans le cas où l'écart-type de la population est connu ($\sigma = 100$ Dinars). 
+Quelle  taille minimale d’échantillon devra-t-on choisir si l’on veut être certain, à un niveau de  confiance de $90\%$, que l’erreur en utilisant X comme estimateur de $\mu$, ne dépassera pas $10$  Dinars ?
+
+__Les instructions__
+1) Déterminer les variables suivantes : 
+
+- sigma : L'écart-type des salaires  
+- c : La confiance fixée 
+- alpha : le risque fixé (1-c)
+- a telque $\mathbb{P}(Z> a) = \alpha/2$ où $Z$ suit la loi normale centrée et réduite.  
+
+2) Initialiser n=1 et calculer E dans ce cas.
+3) Utiliser une boucle while pour répondre à cette question. 
+
+```{r question3, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+sigma = 100
+sigma
+c = 0.90
+c
+alpha = 1-c
+alpha
+a = qnorm(alpha/2, lower.tail = FALSE)
+a
+n= 1 
+E = a * sigma/n
+while(E >10) {
+  n= n+1
+  E = a * sigma/n
+}
+n
+```
